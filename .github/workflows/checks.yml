@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Rubocop
+name: Checks
 
 # Controls when the action will run.
 on:
@@ -30,7 +30,7 @@ jobs:
         with:
           ruby-version: 2.7.x
 
-      - name: Run Rubocop
+      - name: Run Checks
         env:
           RAILS_ENV: test
         run: |
@@ -38,4 +38,8 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
           bundle exec rubocop
+          bundle exec ruumba
+          bundle leak update
+          bundle leak check
+
 

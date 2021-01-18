@@ -15,9 +15,9 @@ if Rails.env.production?
                                                 "ActionDispatch::RemoteIp::IpSpoofAttackError",
                                               ] + ExceptionNotifier.ignored_exceptions,
                                               :email => {
-                                                :email_prefix => "[site] ",                    # fill in site name
+                                                :email_prefix => "[site] ", # fill in site name
                                                 :sender_address => %{"Exception Notifier" <>}, # fill in from address
-                                                :exception_recipients => %w{},                 # fill in destination addresses
+                                                :exception_recipients => %w{}, # fill in destination addresses
                                               })
 
   Pushover.API_TOKEN = "secret"

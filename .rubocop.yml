@@ -47,7 +47,7 @@ Layout/FirstHashElementIndentation:
 Layout/HashAlignment:
   Enabled: false
 Layout/LineLength:
-  Max: 100
+  Max: 120
 Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 Layout/MultilineMethodCallIndentation:
