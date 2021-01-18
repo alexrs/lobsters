@@ -43,6 +43,7 @@ jobs:
       - name: Run Tests
         env:
           RAILS_ENV: test
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           sudo apt-get -yqq install libpq-dev
           gem install bundler
