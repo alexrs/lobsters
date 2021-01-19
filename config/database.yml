@@ -11,6 +11,10 @@ development: &development
 test:
   <<: *development
   database: lobsters_test
+  <% if ENV['CI'] %>
+  host: 127.0.0.1
+  port: <%= ENV['DB_PORT'] %>
+  <% end %>
 
 production: &production
   <<: *default

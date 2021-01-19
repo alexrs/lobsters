@@ -43,6 +43,7 @@ jobs:
         bundle exec rails test
       env:
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        RAILS_ENV: test
 
   lint:
     runs-on: ubuntu-latest
