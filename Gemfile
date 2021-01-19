@@ -27,6 +27,7 @@ gem "puma"
 gem "bcrypt", "~> 3.1.2"
 gem "rotp"
 gem "rqrcode"
+gem 'ejson-rails'
 
 # parsing
 gem "pdf-reader"
