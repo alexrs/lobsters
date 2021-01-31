@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: lobsters_development
+    expose:
+      - '3306'
+    volumes:
+      - 'my-db:/var/lib/mysql'
+  app:
+    container_name: production-container
+    build: .
+    volumes:
+      - ".:/app:cached"
+    depends_on:
+      - mysql
+      - proxy
+    links:
+      - mysql
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: 'development'
+      DB_PORT: '3306'
+volumes:
+  my-db:
+    driver: local

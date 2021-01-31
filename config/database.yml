@@ -2,14 +2,24 @@ default: &default
   adapter: mysql2
   collation: utf8mb4_unicode_ci
   encoding: utf8mb4
+  pool: 5
 
 development: &development
   <<: *default
   username: root
-  database: lobsters_dev
+  password: root
+  database: lobsters_development
+  <% if ENV['CI'] %>
+  host: 127.0.0.1
+  port: <%= ENV['DB_PORT'] %>
+  <% else %>
+  host: mysql
+  port: <%= ENV['DB_PORT'] %>
+  <% end %>
 
 test:
-  <<: *development
+  <<: *default
+  username: root
   database: lobsters_test
   <% if ENV['CI'] %>
   host: 127.0.0.1
@@ -18,4 +28,3 @@ test:
 
 production: &production
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
